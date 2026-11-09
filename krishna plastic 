@@ -1,0 +1,1593 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krishna Plastic | Metoda GIDC Disposable Wholesale & Retail</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for clean icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brandBlue: '#2874f0',
+            brandDark: '#172337',
+            brandAmber: '#ff9f00',
+            brandOrange: '#fb641b',
+            brandGreen: '#388e3c',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Hide scrollbar for horizontal category pills while keeping scrollability */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Smooth slide-in animation for drawers */
+    @keyframes slideInRight {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    .animate-slide-in {
+      animation: slideInRight 0.25s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-blue-100 selection:text-brandBlue">
+
+  <!-- Top Sticky Header (Flipkart/Amazon inspired) -->
+  <header class="sticky top-0 z-40 bg-brandBlue text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3">
+      <!-- Top Row: Brand & Cart -->
+      <div class="flex items-center justify-between gap-3">
+        <!-- Brand Name & Location Badge -->
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white text-brandBlue flex items-center justify-center font-extrabold text-xl shadow-sm shrink-0">
+            <i class="fa-solid fa-box-open"></i>
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <h1 class="text-lg sm:text-xl font-extrabold tracking-tight truncate">Krishna Plastic</h1>
+              <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-400 text-slate-900">
+                Wholesale & Retail
+              </span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-blue-100 flex items-center gap-1 truncate">
+              <i class="fa-solid fa-location-dot text-amber-300"></i>
+              <span>Vanijya Bhavan, Gate No. 3, Metoda GIDC, Rajkot</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Desktop Search Bar -->
+        <div class="hidden md:flex flex-1 max-w-xl mx-4">
+          <div class="relative w-full">
+            <input
+              type="text"
+              id="desktopSearchInput"
+              placeholder="Search LL, HDPE, PP bags, thermocol dish, sugarcane plate, cups..."
+              class="w-full pl-4 pr-10 py-2.5 rounded-lg bg-white text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-inner"
+            />
+            <button
+              type="button"
+              id="desktopClearSearch"
+              class="hidden absolute right-9 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+              title="Clear search"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-brandBlue">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Actions: Store Info & Cart Button -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <button
+            onclick="openStoreInfoModal()"
+            class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-lg bg-blue-600/70 hover:bg-blue-600 text-xs font-medium transition border border-blue-400/30"
+          >
+            <i class="fa-solid fa-store"></i>
+            <span>Store Info</span>
+          </button>
+
+          <button
+            onclick="toggleCartDrawer(true)"
+            class="relative flex items-center gap-2 bg-white text-brandBlue hover:bg-blue-50 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl font-bold text-sm shadow-sm transition active:scale-95"
+            aria-label="Open Shopping Cart"
+          >
+            <i class="fa-solid fa-cart-shopping text-base"></i>
+            <span class="hidden sm:inline">Cart</span>
+            <span
+              id="headerCartBadge"
+              class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-extrabold rounded-full bg-brandOrange text-white"
+            >
+              0
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search Bar -->
+      <div class="mt-2.5 md:hidden">
+        <div class="relative w-full">
+          <input
+            type="text"
+            id="mobileSearchInput"
+            placeholder="Search LL, HDPE, PP, Thermocol, Sugarcane..."
+            class="w-full pl-9 pr-9 py-2 rounded-lg bg-white text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-inner"
+          />
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+          <button
+            type="button"
+            id="mobileClearSearch"
+            class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Pills Navigation Bar -->
+    <div class="bg-white text-slate-700 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6">
+        <div id="categoryTabs" class="flex items-center gap-2 py-2.5 overflow-x-auto no-scrollbar">
+          <!-- Category buttons injected dynamically by JS -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-6 pb-24">
+    <!-- Promotional / GIDC Wholesale Banner -->
+    <section class="mb-5 bg-gradient-to-r from-brandDark via-slate-800 to-blue-900 rounded-2xl p-4 sm:p-6 text-white shadow-sm relative overflow-hidden">
+      <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xs font-semibold mb-2">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Wholesale & Retail All-in-One Store • Metoda GIDC</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">
+            LL, HDPE, PP Bags & All Disposables at Factory Rates
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">
+            Complete stock of LL/HDPE/PP Polythene Bags, Round Thermocol & Sugarcane Bagasse Dishes, Cups & Containers at Vanijya Bhavan, Gate No. 3.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-3.5 py-2 text-center">
+            <div class="text-xs text-slate-300">Open Today</div>
+            <div class="text-sm font-bold text-emerald-400">Up to 8:15 PM</div>
+          </div>
+          <button
+            onclick="openStoreInfoModal()"
+            class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow transition active:scale-95"
+          >
+            Location & Timings
+          </button>
+        </div>
+      </div>
+      <!-- Decorative background circles -->
+      <div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-brandBlue/20 pointer-events-none"></div>
+      <div class="absolute right-24 -top-12 w-32 h-32 rounded-full bg-amber-400/10 pointer-events-none"></div>
+    </section>
+
+    <!-- Results Header & Sort -->
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+      <div>
+        <h3 id="currentCategoryTitle" class="text-base sm:text-lg font-bold text-slate-800">
+          All Disposable & Packaging Items
+        </h3>
+        <p id="itemCountText" class="text-xs text-slate-500">Showing wholesale & retail items</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <label for="sortSelect" class="text-xs text-slate-500 hidden sm:inline">Sort by:</label>
+        <select
+          id="sortSelect"
+          class="bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-brandBlue"
+        >
+          <option value="featured">Recommended</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name-asc">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+      <!-- Product Cards rendered dynamically via JS -->
+    </div>
+
+    <!-- Empty Search State -->
+    <div id="emptyState" class="hidden bg-white rounded-2xl border border-slate-200 p-10 text-center my-6">
+      <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3 text-2xl">
+        <i class="fa-solid fa-box-open"></i>
+      </div>
+      <h4 class="text-base font-bold text-slate-800">No disposable items found</h4>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-md mx-auto">
+        We couldn't find any item matching your search or filter. Try resetting your search or browse all categories.
+      </p>
+      <button
+        onclick="resetFilters()"
+        class="mt-4 px-5 py-2 rounded-xl bg-brandBlue text-white text-sm font-semibold hover:bg-blue-600 transition"
+      >
+        View All Items
+      </button>
+    </div>
+  </main>
+
+  <!-- Mobile Sticky Bottom Cart Bar (visible when cart has items) -->
+  <div
+    id="mobileBottomCartBar"
+    class="fixed bottom-3 left-3 right-3 z-30 md:hidden hidden transition-all duration-200"
+  >
+    <button
+      onclick="toggleCartDrawer(true)"
+      class="w-full bg-brandGreen hover:bg-green-700 text-white rounded-2xl px-4 py-3 shadow-lg flex items-center justify-between font-bold text-sm active:scale-[0.99]"
+    >
+      <div class="flex items-center gap-2.5">
+        <span id="bottomBarCount" class="bg-white/20 px-2.5 py-0.5 rounded-lg text-xs font-extrabold">
+          0 Items
+        </span>
+        <span id="bottomBarTotal" class="text-base font-extrabold">₹0</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span>View Cart & Order</span>
+        <i class="fa-solid fa-chevron-right text-xs"></i>
+      </div>
+    </button>
+  </div>
+
+  <!-- Shopping Cart & Checkout Slide-over Drawer -->
+  <div id="cartDrawerBackdrop" class="fixed inset-0 z-50 hidden">
+    <!-- Backdrop -->
+    <div
+      onclick="toggleCartDrawer(false)"
+      class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+    ></div>
+
+    <!-- Drawer Panel -->
+    <aside class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col animate-slide-in z-10">
+      <!-- Drawer Header -->
+      <div class="px-4 py-3.5 bg-brandBlue text-white flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-bag-shopping text-lg"></i>
+          <div>
+            <h2 class="font-bold text-base leading-tight">Your Order Cart</h2>
+            <p class="text-[11px] text-blue-100">Krishna Plastic • Metoda GIDC</p>
+          </div>
+        </div>
+        <button
+          onclick="toggleCartDrawer(false)"
+          class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition"
+          aria-label="Close Cart"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Body (Scrollable) -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4">
+        <!-- Empty Cart State -->
+        <div id="emptyCartMessage" class="py-12 text-center">
+          <div class="w-20 h-20 rounded-full bg-blue-50 text-brandBlue flex items-center justify-center mx-auto mb-3 text-3xl">
+            <i class="fa-solid fa-cart-plus"></i>
+          </div>
+          <h3 class="font-bold text-slate-800 text-base">Your cart is empty</h3>
+          <p class="text-xs text-slate-500 mt-1 max-w-xs mx-auto">
+            Add paper cups, plates, food containers, or carry bags from our Metoda GIDC catalog.
+          </p>
+          <button
+            onclick="toggleCartDrawer(false)"
+            class="mt-5 px-5 py-2.5 rounded-xl bg-brandBlue text-white text-sm font-semibold hover:bg-blue-600 transition"
+          >
+            Browse Catalog
+          </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsContainer" class="space-y-3 hidden">
+          <!-- Cart item rows injected via JS -->
+        </div>
+
+        <!-- Bill Summary & Checkout Form (shown when cart has items) -->
+        <div id="checkoutSection" class="hidden space-y-4 pt-2 border-t border-slate-200">
+          <!-- Bill Details Card -->
+          <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200 space-y-2 text-sm">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-800">Bill Summary</span>
+              <label class="inline-flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer select-none">
+                <input type="checkbox" id="gstToggle" checked class="rounded text-brandBlue focus:ring-brandBlue" />
+                <span>Include 18% GST Invoice</span>
+              </label>
+            </div>
+
+            <div class="flex justify-between text-slate-600 text-xs sm:text-sm">
+              <span>Items Subtotal</span>
+              <span id="billSubtotal" class="font-semibold text-slate-800">₹0</span>
+            </div>
+            <div id="gstRow" class="flex justify-between text-slate-600 text-xs sm:text-sm">
+              <span>GST (18%)</span>
+              <span id="billGst" class="font-semibold text-slate-800">₹0</span>
+            </div>
+            <div class="flex justify-between text-slate-600 text-xs sm:text-sm">
+              <span>Delivery / Handling</span>
+              <span class="font-semibold text-brandGreen">FREE (Metoda GIDC)</span>
+            </div>
+            <div class="pt-2 border-t border-slate-200 flex justify-between items-center text-base font-extrabold text-slate-900">
+              <span>Grand Total</span>
+              <span id="billGrandTotal" class="text-brandBlue">₹0</span>
+            </div>
+          </div>
+
+          <!-- Customer Checkout Form -->
+          <form id="checkoutForm" class="space-y-3">
+            <h4 class="font-bold text-sm text-slate-800 flex items-center gap-1.5">
+              <i class="fa-solid fa-truck-fast text-brandBlue"></i>
+              <span>Customer & Delivery Details</span>
+            </h4>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name *</label>
+              <input
+                type="text"
+                id="custName"
+                required
+                placeholder="e.g. Rajesh Patel"
+                class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandBlue"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Mobile / WhatsApp *</label>
+                <input
+                  type="tel"
+                  id="custPhone"
+                  required
+                  placeholder="e.g. 98250 XXXXX"
+                  class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandBlue"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Company / Shop (Optional)</label>
+                <input
+                  type="text"
+                  id="custCompany"
+                  placeholder="e.g. Shreeji Industries"
+                  class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandBlue"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Fulfillment Option</label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 bg-white cursor-pointer hover:border-brandBlue text-xs font-medium">
+                  <input type="radio" name="deliveryMode" value="Metoda GIDC Local Delivery" checked class="text-brandBlue" />
+                  <span>GIDC Local Delivery</span>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 bg-white cursor-pointer hover:border-brandBlue text-xs font-medium">
+                  <input type="radio" name="deliveryMode" value="Gate No. 3 Shop Pickup" class="text-brandBlue" />
+                  <span>Gate No. 3 Pickup</span>
+                </label>
+              </div>
+            </div>
+
+            <div id="addressFieldGroup">
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Plot No. / Delivery Address *</label>
+              <textarea
+                id="custAddress"
+                rows="2"
+                required
+                placeholder="Plot No., Road / Gate No., Metoda GIDC..."
+                class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandBlue"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Drawer Footer -->
+      <div id="cartDrawerFooter" class="hidden p-4 bg-white border-t border-slate-200 shrink-0">
+        <button
+          type="submit"
+          form="checkoutForm"
+          class="w-full py-3 px-4 rounded-xl bg-brandOrange hover:bg-orange-600 text-white font-extrabold text-sm sm:text-base shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]"
+        >
+          <span>Place Order / Generate Bill</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Order Receipt Modal -->
+  <div id="receiptModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div onclick="closeReceiptModal()" class="fixed inset-0 bg-slate-900/70 backdrop-blur-xs"></div>
+    <div class="relative bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col">
+      <!-- Top Success Banner -->
+      <div class="bg-brandGreen text-white p-5 text-center shrink-0">
+        <div class="w-12 h-12 rounded-full bg-white text-brandGreen flex items-center justify-center mx-auto mb-2 text-2xl shadow">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h3 class="text-lg font-extrabold">Order Confirmed!</h3>
+        <p class="text-xs text-green-100 mt-0.5">Krishna Plastic • Vanijya Bhavan, Gate No. 3</p>
+      </div>
+
+      <!-- Receipt Content -->
+      <div id="receiptContent" class="p-4 sm:p-5 overflow-y-auto space-y-3 text-sm">
+        <!-- Populated dynamically via JS -->
+      </div>
+
+      <!-- Receipt Actions -->
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row gap-2 shrink-0">
+        <button
+          onclick="copyReceiptText()"
+          class="flex-1 py-2.5 px-3 rounded-xl bg-brandBlue hover:bg-blue-600 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition"
+        >
+          <i class="fa-regular fa-copy"></i>
+          <span>Copy Order Details</span>
+        </button>
+        <button
+          onclick="shareToWhatsApp()"
+          class="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition"
+        >
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span>Send on WhatsApp</span>
+        </button>
+        <button
+          onclick="closeReceiptModal()"
+          class="py-2.5 px-4 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm"
+        >
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Store Info Modal -->
+  <div id="storeInfoModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div onclick="closeStoreInfoModal()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs"></div>
+    <div class="relative bg-white rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-2xl z-10">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-blue-50 text-brandBlue flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-lg text-slate-900">Krishna Plastic</h3>
+            <p class="text-xs text-slate-500">Wholesale & Retail Disposable Suppliers</p>
+          </div>
+        </div>
+        <button onclick="closeStoreInfoModal()" class="text-slate-400 hover:text-slate-600 p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-sm text-slate-700">
+        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50">
+          <i class="fa-solid fa-location-dot text-brandBlue mt-1"></i>
+          <div>
+            <div class="font-semibold text-slate-900">Store Address</div>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Inside Vanijya Bhavan, Gate No. 3, Metoda GIDC, Lodhika, Rajkot, Gujarat 360021
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50">
+          <i class="fa-regular fa-clock text-brandGreen mt-1"></i>
+          <div>
+            <div class="font-semibold text-slate-900">Business Hours</div>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Monday – Sunday: 9:00 AM to 8:15 PM
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50">
+          <i class="fa-solid fa-truck text-amber-600 mt-1"></i>
+          <div>
+            <div class="font-semibold text-slate-900">Bulk & Industrial Supply</div>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Special carton rates available for Metoda GIDC factories, canteens, caterers, and events.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <button
+        onclick="closeStoreInfoModal()"
+        class="mt-5 w-full py-2.5 rounded-xl bg-brandBlue text-white font-bold text-sm hover:bg-blue-600 transition"
+      >
+        Start Shopping
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-16 md:bottom-6 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Application Logic -->
+  <script>
+    /**
+     * Product Catalog Data for Krishna Plastic (Vanijya Bhavan, Gate No. 3, Metoda GIDC, Rajkot)
+     * Comprehensive range of LL, HDPE, PP Bags, Thermocol & Sugarcane Dishes, and Core Disposables
+     */
+    const PRODUCTS = [
+      // 1. Industrial & Packaging Bags (LL, HDPE, PP Bags)
+      {
+        id: 'kp-bag-01',
+        name: 'LLDPE (LL) Transparent Polythene Bags',
+        spec: 'All Sizes (6x9" to 18x24") • 1 Kg Bundle',
+        category: 'LL / HDPE / PP Bags',
+        materialTag: 'LLDPE',
+        unitLabel: 'Kg',
+        price: 145,
+        mrp: 175,
+        badge: 'Industrial Grade',
+        icon: 'fa-bag-shopping',
+        accentBg: 'bg-sky-50',
+        accentText: 'text-sky-700',
+        borderAccent: 'border-sky-200'
+      },
+      {
+        id: 'kp-bag-02',
+        name: 'HDPE Carry Bags / Vest Bags (W-Cut)',
+        spec: 'Heavy-Duty Grocery & Industrial • 1 Kg Pack',
+        category: 'LL / HDPE / PP Bags',
+        materialTag: 'HDPE',
+        unitLabel: 'Kg',
+        price: 130,
+        mrp: 160,
+        badge: 'Best Seller',
+        icon: 'fa-bag-shopping',
+        accentBg: 'bg-blue-50',
+        accentText: 'text-blue-700',
+        borderAccent: 'border-blue-200'
+      },
+      {
+        id: 'kp-bag-03',
+        name: 'HDPE D-Cut Non-Woven / Plain Carry Bags',
+        spec: 'Medium & Large • 1 Kg Wholesale Pack',
+        category: 'LL / HDPE / PP Bags',
+        materialTag: 'HDPE D-Cut',
+        unitLabel: 'Kg',
+        price: 140,
+        mrp: 170,
+        badge: 'Shop Favorite',
+        icon: 'fa-briefcase',
+        accentBg: 'bg-indigo-50',
+        accentText: 'text-indigo-700',
+        borderAccent: 'border-indigo-200'
+      },
+      {
+        id: 'kp-bag-04',
+        name: 'PP (Polypropylene) High-Clarity Bags',
+        spec: 'Crystal Clear for Snacks & Parts • 1 Kg',
+        category: 'LL / HDPE / PP Bags',
+        materialTag: 'PP Clear',
+        unitLabel: 'Kg',
+        price: 155,
+        mrp: 190,
+        badge: 'High Clarity',
+        icon: 'fa-box-open',
+        accentBg: 'bg-cyan-50',
+        accentText: 'text-cyan-700',
+        borderAccent: 'border-cyan-200'
+      },
+      {
+        id: 'kp-bag-05',
+        name: 'HM-HDPE Drum Liners & Heavy Liner Bags',
+        spec: '200L Drum / Carton Liner • 1 Kg Bundle',
+        category: 'LL / HDPE / PP Bags',
+        materialTag: 'HM-HDPE',
+        unitLabel: 'Kg',
+        price: 135,
+        mrp: 165,
+        badge: 'GIDC Factory Use',
+        icon: 'fa-drum',
+        accentBg: 'bg-slate-100',
+        accentText: 'text-slate-800',
+        borderAccent: 'border-slate-300'
+      },
+      {
+        id: 'kp-bag-06',
+        name: 'Heavy Duty Black Garbage Bags (Medium)',
+        spec: '19x21" • Roll of 30 Pcs',
+        category: 'LL / HDPE / PP Bags',
+        materialTag: 'HDPE Roll',
+        unitLabel: 'Roll',
+        price: 65,
+        mrp: 85,
+        badge: 'Office & Home',
+        icon: 'fa-trash-can',
+        accentBg: 'bg-zinc-100',
+        accentText: 'text-zinc-800',
+        borderAccent: 'border-zinc-300'
+      },
+      {
+        id: 'kp-bag-07',
+        name: 'Jumbo XL Black & Green Garbage Bags',
+        spec: '30x37" Industrial XL • Roll of 15 Pcs',
+        category: 'LL / HDPE / PP Bags',
+        materialTag: 'Bio / HDPE',
+        unitLabel: 'Roll',
+        price: 125,
+        mrp: 160,
+        badge: 'Jumbo XL',
+        icon: 'fa-trash-can',
+        accentBg: 'bg-emerald-50',
+        accentText: 'text-emerald-800',
+        borderAccent: 'border-emerald-200'
+      },
+      {
+        id: 'kp-bag-08',
+        name: 'Zip Lock / Reclosable Poly Pouches',
+        spec: '4x6" Heavy Virgin LL • Pack of 100 Pcs',
+        category: 'LL / HDPE / PP Bags',
+        materialTag: 'Zip Lock LL',
+        unitLabel: 'Pack',
+        price: 60,
+        mrp: 80,
+        badge: 'Hardware & Spares',
+        icon: 'fa-lock',
+        accentBg: 'bg-teal-50',
+        accentText: 'text-teal-700',
+        borderAccent: 'border-teal-200'
+      },
+
+      // 2. Thermocol & Sugarcane Bagasse Dishes
+      {
+        id: 'kp-dish-01',
+        name: 'Round Thermocol Dish / Plate (8-Inch)',
+        spec: 'Heavy-Duty White • Pack of 50 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Thermocol',
+        unitLabel: 'Pack',
+        price: 45,
+        mrp: 60,
+        badge: 'Snack Size',
+        icon: 'fa-circle-dot',
+        accentBg: 'bg-slate-50',
+        accentText: 'text-slate-700',
+        borderAccent: 'border-slate-200'
+      },
+      {
+        id: 'kp-dish-02',
+        name: 'Round Thermocol Dish / Plate (10-Inch)',
+        spec: 'White & Silver Laminated • Pack of 50 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Thermocol',
+        unitLabel: 'Pack',
+        price: 65,
+        mrp: 85,
+        badge: 'Best Seller',
+        icon: 'fa-compact-disc',
+        accentBg: 'bg-blue-50',
+        accentText: 'text-blue-700',
+        borderAccent: 'border-blue-200'
+      },
+      {
+        id: 'kp-dish-03',
+        name: 'Round Thermocol Dinner Dish (12-Inch)',
+        spec: 'Extra Strong Catering Dish • Pack of 25 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Thermocol',
+        unitLabel: 'Pack',
+        price: 48,
+        mrp: 65,
+        badge: 'Heavy Duty',
+        icon: 'fa-compact-disc',
+        accentBg: 'bg-indigo-50',
+        accentText: 'text-indigo-700',
+        borderAccent: 'border-indigo-200'
+      },
+      {
+        id: 'kp-dish-04',
+        name: 'Compartment Thermocol Thali (3-CP & 4-CP)',
+        spec: 'Catering Partition Plate • Pack of 25 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Thermocol Thali',
+        unitLabel: 'Pack',
+        price: 55,
+        mrp: 75,
+        badge: 'Catering Special',
+        icon: 'fa-table-cells-large',
+        accentBg: 'bg-purple-50',
+        accentText: 'text-purple-700',
+        borderAccent: 'border-purple-200'
+      },
+      {
+        id: 'kp-dish-05',
+        name: 'Thermocol Bowls / Katori (150ml & 250ml)',
+        spec: 'Leak-Resistant Dessert/Dal Bowl • Pack of 50',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Thermocol',
+        unitLabel: 'Pack',
+        price: 38,
+        mrp: 50,
+        badge: 'Value Pack',
+        icon: 'fa-bowl-food',
+        accentBg: 'bg-sky-50',
+        accentText: 'text-sky-700',
+        borderAccent: 'border-sky-200'
+      },
+      {
+        id: 'kp-dish-06',
+        name: 'Sugarcane Bagasse Round Plate (9-Inch)',
+        spec: '100% Compostable Eco Dish • Pack of 50 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Sugarcane',
+        unitLabel: 'Pack',
+        price: 135,
+        mrp: 170,
+        badge: 'Eco-Friendly',
+        icon: 'fa-plate-wheat',
+        accentBg: 'bg-emerald-50',
+        accentText: 'text-emerald-700',
+        borderAccent: 'border-emerald-200'
+      },
+      {
+        id: 'kp-dish-07',
+        name: 'Sugarcane Bagasse Round Plate (10-Inch)',
+        spec: 'Heavy-Duty Microwave Safe • Pack of 50 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Sugarcane',
+        unitLabel: 'Pack',
+        price: 165,
+        mrp: 210,
+        badge: 'Top Rated',
+        icon: 'fa-plate-wheat',
+        accentBg: 'bg-green-50',
+        accentText: 'text-green-700',
+        borderAccent: 'border-green-200'
+      },
+      {
+        id: 'kp-dish-08',
+        name: 'Sugarcane Bagasse Dinner Plate (12-Inch)',
+        spec: 'Extra Rigid Banquet Plate • Pack of 25 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Sugarcane',
+        unitLabel: 'Pack',
+        price: 115,
+        mrp: 145,
+        badge: 'Banquet Grade',
+        icon: 'fa-plate-wheat',
+        accentBg: 'bg-lime-50',
+        accentText: 'text-lime-800',
+        borderAccent: 'border-lime-200'
+      },
+      {
+        id: 'kp-dish-09',
+        name: 'Sugarcane Bagasse Meal Tray (3-CP & 5-CP)',
+        spec: 'Compartment Thali Tray • Pack of 25 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Sugarcane CP',
+        unitLabel: 'Pack',
+        price: 145,
+        mrp: 185,
+        badge: 'Plastic-Free',
+        icon: 'fa-table-cells',
+        accentBg: 'bg-teal-50',
+        accentText: 'text-teal-700',
+        borderAccent: 'border-teal-200'
+      },
+      {
+        id: 'kp-dish-10',
+        name: 'Sugarcane Bagasse Bowls / Dona (180ml & 300ml)',
+        spec: 'Hot & Cold Gravy Safe • Pack of 50 Pcs',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Sugarcane',
+        unitLabel: 'Pack',
+        price: 95,
+        mrp: 125,
+        badge: 'Compostable',
+        icon: 'fa-bowl-rice',
+        accentBg: 'bg-emerald-50',
+        accentText: 'text-emerald-700',
+        borderAccent: 'border-emerald-200'
+      },
+      {
+        id: 'kp-dish-11',
+        name: 'Silver Laminated Paper Dona & Buffet Plates',
+        spec: '6" Dona (100 Pcs) / 12" Buffet Plate (50 Pcs)',
+        category: 'Thermocol & Sugarcane',
+        materialTag: 'Silver Paper',
+        unitLabel: 'Pack',
+        price: 85,
+        mrp: 110,
+        badge: 'Daily Wholesale',
+        icon: 'fa-circle-dot',
+        accentBg: 'bg-slate-100',
+        accentText: 'text-slate-700',
+        borderAccent: 'border-slate-300'
+      },
+
+      // 3. Paper Cups & Glasses
+      {
+        id: 'kp-cup-01',
+        name: 'Paper Tea Cups (65ml & 110ml)',
+        spec: 'GIDC Factory & Office Tea • Pack of 100 Pcs',
+        category: 'Paper Cups & Glasses',
+        materialTag: 'Paper Cup',
+        unitLabel: 'Pack',
+        price: 55,
+        mrp: 75,
+        badge: 'GIDC Daily Use',
+        icon: 'fa-mug-saucer',
+        accentBg: 'bg-orange-50',
+        accentText: 'text-orange-700',
+        borderAccent: 'border-orange-200'
+      },
+      {
+        id: 'kp-cup-02',
+        name: 'Paper Coffee & Juice Cups (150ml)',
+        spec: 'Printed Food-Grade Paper • Pack of 100 Pcs',
+        category: 'Paper Cups & Glasses',
+        materialTag: 'Paper Cup',
+        unitLabel: 'Pack',
+        price: 75,
+        mrp: 95,
+        badge: 'Wholesale Rate',
+        icon: 'fa-mug-hot',
+        accentBg: 'bg-amber-50',
+        accentText: 'text-amber-700',
+        borderAccent: 'border-amber-200'
+      },
+      {
+        id: 'kp-cup-03',
+        name: 'Ripple Insulated Coffee Cups (250ml)',
+        spec: 'Double-Wall Hot Coffee • Pack of 50 Pcs',
+        category: 'Paper Cups & Glasses',
+        materialTag: 'Ripple Paper',
+        unitLabel: 'Pack',
+        price: 85,
+        mrp: 115,
+        badge: 'Premium Hot',
+        icon: 'fa-mug-hot',
+        accentBg: 'bg-amber-50',
+        accentText: 'text-amber-800',
+        borderAccent: 'border-amber-200'
+      },
+      {
+        id: 'kp-cup-04',
+        name: 'Plastic Water Glasses (200ml & 250ml)',
+        spec: 'Clear & Milky PP Glasses • Pack of 100 Pcs',
+        category: 'Paper Cups & Glasses',
+        materialTag: 'PP Glass',
+        unitLabel: 'Pack',
+        price: 70,
+        mrp: 90,
+        badge: 'Event Essential',
+        icon: 'fa-glass-water',
+        accentBg: 'bg-sky-50',
+        accentText: 'text-sky-700',
+        borderAccent: 'border-sky-200'
+      },
+
+      // 4. Food Containers
+      {
+        id: 'kp-cont-01',
+        name: 'Round Food Container with Lid (250ml & 500ml)',
+        spec: 'Microwave-Safe PP Box • Pack of 50 Pcs',
+        category: 'Food Containers',
+        materialTag: 'PP Food Grade',
+        unitLabel: 'Pack',
+        price: 175,
+        mrp: 225,
+        badge: 'Leak-Proof',
+        icon: 'fa-box',
+        accentBg: 'bg-blue-50',
+        accentText: 'text-blue-700',
+        borderAccent: 'border-blue-200'
+      },
+      {
+        id: 'kp-cont-02',
+        name: 'Large Food Container with Lid (750ml & 1000ml)',
+        spec: 'Biryani & Curry Parcel Box • Pack of 25 Pcs',
+        category: 'Food Containers',
+        materialTag: 'PP Microwave',
+        unitLabel: 'Pack',
+        price: 190,
+        mrp: 245,
+        badge: 'Restaurant Choice',
+        icon: 'fa-boxes-stacked',
+        accentBg: 'bg-indigo-50',
+        accentText: 'text-indigo-700',
+        borderAccent: 'border-indigo-200'
+      },
+      {
+        id: 'kp-cont-03',
+        name: 'Rectangular Meal Box with Lid (500ml / 750ml)',
+        spec: 'Stackable Delivery Box • Pack of 50 Pcs',
+        category: 'Food Containers',
+        materialTag: 'PP Box',
+        unitLabel: 'Pack',
+        price: 235,
+        mrp: 295,
+        badge: 'Bulk Saver',
+        icon: 'fa-box-open',
+        accentBg: 'bg-cyan-50',
+        accentText: 'text-cyan-700',
+        borderAccent: 'border-cyan-200'
+      },
+
+      // 5. Spoons & Foil
+      {
+        id: 'kp-sf-01',
+        name: 'Disposable Plastic Spoons & Forks',
+        spec: 'Heavy White/Clear PP • Pack of 100 Pcs',
+        category: 'Spoons & Foil',
+        materialTag: 'PP Cutlery',
+        unitLabel: 'Pack',
+        price: 45,
+        mrp: 65,
+        badge: 'Wholesale Rate',
+        icon: 'fa-spoon',
+        accentBg: 'bg-cyan-50',
+        accentText: 'text-cyan-700',
+        borderAccent: 'border-cyan-200'
+      },
+      {
+        id: 'kp-sf-02',
+        name: 'Wooden Ice Cream Spoons & Birchwood Cutlery',
+        spec: 'Splinter-Free Eco Wood • Pack of 100 Pcs',
+        category: 'Spoons & Foil',
+        materialTag: 'Birchwood',
+        unitLabel: 'Pack',
+        price: 65,
+        mrp: 90,
+        badge: 'Eco-Friendly',
+        icon: 'fa-utensils',
+        accentBg: 'bg-amber-50',
+        accentText: 'text-amber-800',
+        borderAccent: 'border-amber-200'
+      },
+      {
+        id: 'kp-sf-03',
+        name: 'Drinking Straws (Wrapped & Plain)',
+        spec: 'Juice & Cold Drink Straws • Pack of 100 Pcs',
+        category: 'Spoons & Foil',
+        materialTag: 'Food Grade',
+        unitLabel: 'Pack',
+        price: 40,
+        mrp: 55,
+        badge: 'Hygienic',
+        icon: 'fa-wand-magic-sparkles',
+        accentBg: 'bg-rose-50',
+        accentText: 'text-rose-700',
+        borderAccent: 'border-rose-200'
+      },
+      {
+        id: 'kp-sf-04',
+        name: 'Aluminium Foil Rolls (9m, 18m & 72m Catering)',
+        spec: '72m Catering Jumbo Roll (9m/18m Also Available)',
+        category: 'Spoons & Foil',
+        materialTag: 'Aluminium',
+        unitLabel: 'Roll',
+        price: 220,
+        mrp: 280,
+        badge: 'Catering Roll',
+        icon: 'fa-scroll',
+        accentBg: 'bg-slate-100',
+        accentText: 'text-slate-700',
+        borderAccent: 'border-slate-300'
+      },
+      {
+        id: 'kp-sf-05',
+        name: 'Food Wrapping Cling Film & Paper Napkins',
+        spec: '100m Cling Film + 2-Ply Soft Tissue Pack',
+        category: 'Spoons & Foil',
+        materialTag: 'Foil & Tissue',
+        unitLabel: 'Combo',
+        price: 135,
+        mrp: 175,
+        badge: 'Kitchen Combo',
+        icon: 'fa-note-sticky',
+        accentBg: 'bg-pink-50',
+        accentText: 'text-pink-700',
+        borderAccent: 'border-pink-200'
+      }
+    ];
+
+    const CATEGORIES = [
+      'All Items',
+      'LL / HDPE / PP Bags',
+      'Thermocol & Sugarcane',
+      'Paper Cups & Glasses',
+      'Food Containers',
+      'Spoons & Foil'
+    ];
+
+    // Application State
+    let state = {
+      selectedCategory: 'All Items',
+      searchQuery: '',
+      sortBy: 'featured',
+      cart: {}, // { productId: quantity }
+      includeGst: true,
+      lastReceiptText: ''
+    };
+
+    // Load saved cart from localStorage if available
+    try {
+      const savedCart = localStorage.getItem('krishna_plastic_cart');
+      if (savedCart) {
+        state.cart = JSON.parse(savedCart);
+      }
+    } catch (e) {
+      console.warn('Could not read saved cart:', e);
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem('krishna_plastic_cart', JSON.stringify(state.cart));
+      } catch (e) {
+        // Ignore storage errors
+      }
+    }
+
+    // Format currency in INR
+    function formatINR(amount) {
+      return '₹' + Math.round(amount).toLocaleString('en-IN');
+    }
+
+    // Show toast notification
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      const bgClass = type === 'success' ? 'bg-slate-900 text-white' : 'bg-red-600 text-white';
+      toast.className = `${bgClass} px-4 py-2.5 rounded-xl shadow-lg text-xs sm:text-sm font-medium flex items-center gap-2 transition-all duration-300 transform translate-y-2 opacity-0`;
+      toast.innerHTML = `
+        <i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-exclamation'}"></i>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 2200);
+    }
+
+    // Render Category Pills
+    function renderCategories() {
+      const container = document.getElementById('categoryTabs');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = state.selectedCategory === cat;
+        return `
+          <button
+            onclick="selectCategory('${cat.replace(/'/g, "\\'")}')"
+            class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition ${
+              isActive
+                ? 'bg-brandBlue text-white shadow-xs'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+            }"
+          >
+            ${cat}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectCategory(category) {
+      state.selectedCategory = category;
+      document.getElementById('currentCategoryTitle').textContent =
+        category === 'All Items' ? 'All Disposable & Packaging Items' : category;
+      renderCategories();
+      renderProducts();
+    }
+
+    function resetFilters() {
+      state.selectedCategory = 'All Items';
+      state.searchQuery = '';
+      state.sortBy = 'featured';
+      document.getElementById('desktopSearchInput').value = '';
+      document.getElementById('mobileSearchInput').value = '';
+      document.getElementById('desktopClearSearch').classList.add('hidden');
+      document.getElementById('mobileClearSearch').classList.add('hidden');
+      document.getElementById('sortSelect').value = 'featured';
+      selectCategory('All Items');
+    }
+
+    // Filter and sort products
+    function getFilteredProducts() {
+      let filtered = PRODUCTS.filter(item => {
+        const matchesCat =
+          state.selectedCategory === 'All Items' || item.category === state.selectedCategory;
+        const q = state.searchQuery.trim().toLowerCase();
+        const matchesQuery =
+          !q ||
+          item.name.toLowerCase().includes(q) ||
+          item.category.toLowerCase().includes(q) ||
+          item.spec.toLowerCase().includes(q) ||
+          (item.materialTag && item.materialTag.toLowerCase().includes(q));
+        return matchesCat && matchesQuery;
+      });
+
+      if (state.sortBy === 'price-asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (state.sortBy === 'price-desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (state.sortBy === 'name-asc') {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      return filtered;
+    }
+
+    // Render Product Grid
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const emptyState = document.getElementById('emptyState');
+      const countText = document.getElementById('itemCountText');
+      const items = getFilteredProducts();
+
+      countText.textContent = `Showing ${items.length} wholesale ${items.length === 1 ? 'item' : 'items'}`;
+
+      if (items.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      grid.innerHTML = items.map(product => {
+        const qty = state.cart[product.id] || 0;
+        const discountPct = Math.round(((product.mrp - product.price) / product.mrp) * 100);
+        const unit = product.unitLabel || 'Pack';
+
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200/90 hover:border-brandBlue/50 hover:shadow-md transition flex flex-col justify-between overflow-hidden group">
+            <div>
+              <!-- Visual Header / Icon Illustration -->
+              <div class="relative ${product.accentBg} border-b ${product.borderAccent} p-4 sm:p-5 flex items-center justify-center h-32 sm:h-36">
+                <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-900/85 text-white shadow-2xs tracking-wide">
+                  ${product.materialTag || product.badge}
+                </span>
+                <span class="absolute top-2.5 right-2.5 px-1.5 py-0.5 rounded-md text-[10px] font-extrabold bg-emerald-600 text-white">
+                  ${discountPct}% OFF
+                </span>
+
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white shadow-xs flex items-center justify-center ${product.accentText} text-3xl sm:text-4xl group-hover:scale-105 transition-transform">
+                  <i class="fa-solid ${product.icon}"></i>
+                </div>
+              </div>
+
+              <!-- Product Details -->
+              <div class="p-3 sm:p-4 pb-2">
+                <div class="flex items-center justify-between gap-1">
+                  <span class="text-[10px] sm:text-[11px] font-semibold text-brandBlue uppercase tracking-wide truncate">
+                    ${product.category}
+                  </span>
+                </div>
+                <h4 class="font-bold text-slate-900 text-xs sm:text-sm mt-0.5 line-clamp-2 min-h-[2.25rem] sm:min-h-[2.5rem]">
+                  ${product.name}
+                </h4>
+                <p class="text-[11px] sm:text-xs text-slate-500 mt-1 flex items-center gap-1">
+                  <i class="fa-solid fa-layer-group text-[10px] text-slate-400"></i>
+                  <span class="truncate">${product.spec}</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Price & Add to Cart Action -->
+            <div class="p-3 sm:p-4 pt-1">
+              <div class="flex items-baseline gap-1.5 mb-2.5">
+                <span class="text-base sm:text-lg font-extrabold text-slate-900">${formatINR(product.price)}</span>
+                <span class="text-[11px] text-slate-400 line-through">${formatINR(product.mrp)}</span>
+                <span class="ml-auto text-[10px] font-semibold text-brandGreen bg-green-50 px-1.5 py-0.5 rounded">
+                  /${unit}
+                </span>
+              </div>
+
+              ${
+                qty === 0
+                  ? `
+                    <button
+                      onclick="updateCartQty('${product.id}', 1)"
+                      class="w-full py-2 px-3 rounded-xl bg-blue-50 hover:bg-brandBlue text-brandBlue hover:text-white border border-brandBlue/30 font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 active:scale-95"
+                    >
+                      <i class="fa-solid fa-plus text-xs"></i>
+                      <span>Add</span>
+                    </button>
+                  `
+                  : `
+                    <div class="w-full flex items-center justify-between bg-brandBlue text-white rounded-xl overflow-hidden shadow-xs">
+                      <button
+                        onclick="updateCartQty('${product.id}', -1)"
+                        class="w-10 h-9 flex items-center justify-center hover:bg-blue-700 transition font-bold"
+                        aria-label="Decrease quantity"
+                      >
+                        <i class="fa-solid fa-minus text-xs"></i>
+                      </button>
+                      <span class="font-extrabold text-xs sm:text-sm">${qty} ${unit}${qty > 1 ? 's' : ''}</span>
+                      <button
+                        onclick="updateCartQty('${product.id}', 1)"
+                        class="w-10 h-9 flex items-center justify-center hover:bg-blue-700 transition font-bold"
+                        aria-label="Increase quantity"
+                      >
+                        <i class="fa-solid fa-plus text-xs"></i>
+                      </button>
+                    </div>
+                  `
+              }
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Update Cart Quantity
+    function updateCartQty(productId, delta) {
+      const current = state.cart[productId] || 0;
+      const next = current + delta;
+      const product = PRODUCTS.find(p => p.id === productId);
+
+      if (next <= 0) {
+        delete state.cart[productId];
+        if (product) showToast(`Removed ${product.name} from cart`);
+      } else {
+        state.cart[productId] = next;
+        if (current === 0 && product) {
+          showToast(`Added ${product.name} to cart`);
+        }
+      }
+
+      saveCart();
+      renderProducts();
+      updateCartUI();
+    }
+
+    function removeFromCart(productId) {
+      delete state.cart[productId];
+      saveCart();
+      renderProducts();
+      updateCartUI();
+    }
+
+    // Calculate Cart Totals
+    function getCartSummary() {
+      let totalPacks = 0;
+      let subtotal = 0;
+      const lines = [];
+
+      Object.entries(state.cart).forEach(([id, qty]) => {
+        const product = PRODUCTS.find(p => p.id === id);
+        if (product && qty > 0) {
+          const lineTotal = product.price * qty;
+          totalPacks += qty;
+          subtotal += lineTotal;
+          lines.push({ product, qty, lineTotal });
+        }
+      });
+
+      const gstAmount = state.includeGst ? subtotal * 0.18 : 0;
+      const grandTotal = subtotal + gstAmount;
+
+      return { totalPacks, subtotal, gstAmount, grandTotal, lines };
+    }
+
+    // Update Cart Drawer, Header Badge & Bottom Bar
+    function updateCartUI() {
+      const { totalPacks, subtotal, gstAmount, grandTotal, lines } = getCartSummary();
+
+      // Update Header Badge
+      document.getElementById('headerCartBadge').textContent = totalPacks;
+
+      // Update Mobile Bottom Cart Bar
+      const bottomBar = document.getElementById('mobileBottomCartBar');
+      if (totalPacks > 0) {
+        bottomBar.classList.remove('hidden');
+        document.getElementById('bottomBarCount').textContent = `${totalPacks} Item${totalPacks > 1 ? 's' : ''}`;
+        document.getElementById('bottomBarTotal').textContent = formatINR(grandTotal);
+      } else {
+        bottomBar.classList.add('hidden');
+      }
+
+      // Update Cart Drawer Content
+      const emptyMsg = document.getElementById('emptyCartMessage');
+      const itemsContainer = document.getElementById('cartItemsContainer');
+      const checkoutSection = document.getElementById('checkoutSection');
+      const drawerFooter = document.getElementById('cartDrawerFooter');
+
+      if (lines.length === 0) {
+        emptyMsg.classList.remove('hidden');
+        itemsContainer.classList.add('hidden');
+        checkoutSection.classList.add('hidden');
+        drawerFooter.classList.add('hidden');
+        return;
+      }
+      itemsContainer.innerHTML = lines.map(({ product, qty, lineTotal }) => {
+        const unit = (product.unitLabel || 'Pack').toLowerCase();
+        return `
+        <div class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 bg-white">
+          <div class="w-12 h-12 rounded-xl ${product.accentBg} ${product.accentText} flex items-center justify-center text-lg shrink-0">
+            <i class="fa-solid ${product.icon}"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="px-1.5 py-0.2 rounded text-[9px] font-bold bg-slate-100 text-slate-700">${product.materialTag || ''}</span>
+              <h5 class="font-bold text-xs sm:text-sm text-slate-900 truncate">${product.name}</h5>
+            </div>
+            <p class="text-[11px] text-slate-500">${product.spec} • ${formatINR(product.price)}/${unit}</p>
+            <div class="mt-1.5 flex items-center justify-between">
+              <div class="inline-flex items-center border border-slate-300 rounded-lg overflow-hidden">
+                <button
+                  onclick="updateCartQty('${product.id}', -1)"
+                  class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs"
+                >-</button>
+                <span class="px-2.5 py-0.5 text-xs font-extrabold text-slate-900">${qty}</span>
+                <button
+                  onclick="updateCartQty('${product.id}', 1)"
+                  class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs"
+                >+</button>
+              </div>
+              <span class="font-extrabold text-sm text-slate-900">${formatINR(lineTotal)}</span>
+            </div>
+          </div>
+          <button
+            onclick="removeFromCart('${product.id}')"
+            class="text-slate-400 hover:text-red-500 p-1.5 transition"
+            title="Remove item"
+          >
+            <i class="fa-solid fa-trash-can text-xs"></i>
+          </button>
+        </div>
+      `;
+      }).join('');
+
+      // Update Bill Summary numbers
+      document.getElementById('billSubtotal').textContent = formatINR(subtotal);
+      document.getElementById('billGst').textContent = formatINR(gstAmount);
+      document.getElementById('billGrandTotal').textContent = formatINR(grandTotal);
+      document.getElementById('gstRow').style.display = state.includeGst ? 'flex' : 'none';
+    }
+
+    // Drawer & Modal Controls
+    function toggleCartDrawer(open) {
+      const backdrop = document.getElementById('cartDrawerBackdrop');
+      if (open) {
+        updateCartUI();
+        backdrop.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      } else {
+        backdrop.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openStoreInfoModal() {
+      document.getElementById('storeInfoModal').classList.remove('hidden');
+    }
+
+    function closeStoreInfoModal() {
+      document.getElementById('storeInfoModal').classList.add('hidden');
+    }
+
+    function closeReceiptModal() {
+      document.getElementById('receiptModal').classList.add('hidden');
+    }
+
+    // Handle Order Submission & Receipt Generation
+    function handlePlaceOrder(e) {
+      e.preventDefault();
+      const { totalPacks, subtotal, gstAmount, grandTotal, lines } = getCartSummary();
+      if (lines.length === 0) return;
+
+      const custName = document.getElementById('custName').value.trim();
+      const custPhone = document.getElementById('custPhone').value.trim();
+      const custCompany = document.getElementById('custCompany').value.trim();
+      const deliveryMode = document.querySelector('input[name="deliveryMode"]:checked').value;
+      const custAddress = document.getElementById('custAddress').value.trim();
+
+      const orderId = 'KP-' + Math.floor(100000 + Math.random() * 900000);
+      const orderDate = new Date().toLocaleString('en-IN', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      });
+
+      // Build plain text receipt for Copy / WhatsApp sharing
+      const itemLinesText = lines
+        .map((l, idx) => `${idx + 1}. ${l.product.name} (${l.product.spec}) x ${l.qty} = ${formatINR(l.lineTotal)}`)
+        .join('\n');
+
+      state.lastReceiptText = [
+        `*NEW ORDER - KRISHNA PLASTIC*`,
+        `📍 Vanijya Bhavan, Gate No. 3, Metoda GIDC`,
+        `🆔 Order ID: ${orderId}`,
+        `📅 Date: ${orderDate}`,
+        `--------------------------`,
+        `👤 Customer: ${custName}${custCompany ? ' (' + custCompany + ')' : ''}`,
+        `📞 Phone: ${custPhone}`,
+        `🚚 Mode: ${deliveryMode}`,
+        custAddress ? `🏠 Address: ${custAddress}` : '',
+        `--------------------------`,
+        `*ITEMS ORDERED (${totalPacks} Packs):*`,
+        itemLinesText,
+        `--------------------------`,
+        `Subtotal: ${formatINR(subtotal)}`,
+        state.includeGst ? `GST (18%): ${formatINR(gstAmount)}` : `GST: Not Applied`,
+        `*Grand Total: ${formatINR(grandTotal)}*`
+      ].filter(Boolean).join('\n');
+
+      // Populate Receipt Modal HTML
+      document.getElementById('receiptContent').innerHTML = `
+        <div class="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <div>
+            <div class="text-[11px] text-slate-500">Order Reference</div>
+            <div class="font-extrabold text-slate-900">${orderId}</div>
+          </div>
+          <div class="text-right">
+            <div class="text-[11px] text-slate-500">Order Time</div>
+            <div class="font-semibold text-xs text-slate-700">${orderDate}</div>
+          </div>
+        </div>
+
+        <div class="space-y-1 text-xs bg-blue-50/60 p-3 rounded-xl border border-blue-100">
+          <div><span class="font-semibold text-slate-700">Customer:</span> ${custName} ${custCompany ? `(${custCompany})` : ''}</div>
+          <div><span class="font-semibold text-slate-700">Phone:</span> ${custPhone}</div>
+          <div><span class="font-semibold text-slate-700">Fulfillment:</span> ${deliveryMode}</div>
+          ${custAddress ? `<div><span class="font-semibold text-slate-700">Address:</span> ${custAddress}</div>` : ''}
+        </div>
+
+        <div>
+          <div class="font-bold text-xs text-slate-700 uppercase tracking-wider mb-2">Order Items (${totalPacks} Packs)</div>
+          <div class="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden">
+            ${lines.map(l => `
+              <div class="p-2.5 flex items-center justify-between text-xs bg-white">
+                <div class="pr-2">
+                  <div class="font-semibold text-slate-800">${l.product.name}</div>
+                  <div class="text-slate-500">${l.product.spec} × ${l.qty}</div>
+                </div>
+                <div class="font-bold text-slate-900 shrink-0">${formatINR(l.lineTotal)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1 text-xs">
+          <div class="flex justify-between text-slate-600">
+            <span>Subtotal</span>
+            <span>${formatINR(subtotal)}</span>
+          </div>
+          ${state.includeGst ? `
+            <div class="flex justify-between text-slate-600">
+              <span>GST (18%)</span>
+              <span>${formatINR(gstAmount)}</span>
+            </div>
+          ` : ''}
+          <div class="flex justify-between font-extrabold text-sm text-slate-900 pt-1.5 border-t border-slate-200">
+            <span>Total Payable</span>
+            <span class="text-brandBlue">${formatINR(grandTotal)}</span>
+          </div>
+        </div>
+      `;
+
+      // Clear cart after placing order
+      state.cart = {};
+      saveCart();
+      renderProducts();
+      updateCartUI();
+      toggleCartDrawer(false);
+
+      // Show Receipt Modal
+      document.getElementById('receiptModal').classList.remove('hidden');
+    }
+
+    // Copy Receipt using document.execCommand('copy') for reliable iframe support
+    function copyReceiptText() {
+      const textarea = document.createElement('textarea');
+      textarea.value = state.lastReceiptText;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Order summary copied to clipboard!');
+      } catch (err) {
+        showToast('Unable to copy text', 'error');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function shareToWhatsApp() {
+      const encoded = encodeURIComponent(state.lastReceiptText);
+      window.open(`https://wa.me/?text=${encoded}`, '_blank');
+    }
+
+    // Initialize Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategories();
+      renderProducts();
+      updateCartUI();
+
+      // Sync desktop & mobile search inputs
+      const desktopSearch = document.getElementById('desktopSearchInput');
+      const mobileSearch = document.getElementById('mobileSearchInput');
+      const desktopClear = document.getElementById('desktopClearSearch');
+      const mobileClear = document.getElementById('mobileClearSearch');
+
+      function handleSearchInput(val) {
+        state.searchQuery = val;
+        desktopSearch.value = val;
+        mobileSearch.value = val;
+        desktopClear.classList.toggle('hidden', !val);
+        mobileClear.classList.toggle('hidden', !val);
+        renderProducts();
+      }
+
+      desktopSearch.addEventListener('input', e => handleSearchInput(e.target.value));
+      mobileSearch.addEventListener('input', e => handleSearchInput(e.target.value));
+      desktopClear.addEventListener('click', () => handleSearchInput(''));
+      mobileClear.addEventListener('click', () => handleSearchInput(''));
+
+      // Sort dropdown
+      document.getElementById('sortSelect').addEventListener('change', e => {
+        state.sortBy = e.target.value;
+        renderProducts();
+      });
+
+      // GST toggle
+      document.getElementById('gstToggle').addEventListener('change', e => {
+        state.includeGst = e.target.checked;
+        updateCartUI();
+      });
+
+      // Fulfillment radio buttons toggle address requirement
+      document.querySelectorAll('input[name="deliveryMode"]').forEach(radio => {
+        radio.addEventListener('change', e => {
+          const isPickup = e.target.value.includes('Pickup');
+          const addrInput = document.getElementById('custAddress');
+          const addrGroup = document.getElementById('addressFieldGroup');
+          if (isPickup) {
+            addrInput.removeAttribute('required');
+            addrGroup.classList.add('opacity-50');
+          } else {
+            addrInput.setAttribute('required', 'required');
+            addrGroup.classList.remove('opacity-50');
+          }
+        });
+      });
+
+      // Checkout form submit
+      document.getElementById('checkoutForm').addEventListener('submit', handlePlaceOrder);
+    });
+  </script>
+</body>
+</html>
+```
